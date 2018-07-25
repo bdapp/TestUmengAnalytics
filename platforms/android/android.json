@@ -1,0 +1,97 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {
+      "res/xml/config.xml": {
+        "parents": {
+          "/widget/plugins": [
+            {
+              "xml": "<feature name=\"Umeng\"><param name=\"android-package\" value=\"com.umeng.plugin.UMPlugin\" /></feature>",
+              "count": 1
+            }
+          ],
+          "/*": [
+            {
+              "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+              "count": 1
+            }
+          ]
+        }
+      },
+      "AndroidManifest.xml": {
+        "parents": {
+          "application": [
+            {
+              "xml": "<meta-data android:name=\"UMENG_APPKEY\" android:value=\"5b554080a40fa37a2100006e\" />",
+              "count": 1
+            },
+            {
+              "xml": "<meta-data android:name=\"UMENG_CHANNEL\" android:value=\"Channel\" />",
+              "count": 1
+            }
+          ],
+          "/manifest": [
+            {
+              "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+              "count": 1
+            },
+            {
+              "xml": "<uses-permission android:name=\"android.permission.READ_EXTERNAL_STORAGE\" />",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "installed_plugins": {
+    "Umeng": {
+      "PACKAGE_NAME": "com.my.meng"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.my.meng"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "id": "Umeng.Umeng",
+      "file": "plugins/Umeng/www/Umeng.js",
+      "pluginId": "Umeng",
+      "clobbers": [
+        "MobclickAgent"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "Umeng": "3.0.0",
+    "cordova-plugin-whitelist": "1.3.3"
+  }
+}
