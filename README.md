@@ -1,4 +1,6 @@
-# Cordova集成Umeng统计（android）
+# Cordova集成Umeng统计 + Bugly全量更新（android）
+
+# 一、Umeng统计
 
 ## 准备工作
 
@@ -21,6 +23,8 @@
 
     cordova platforms add android
     ```
+    > 这里可以用android studio直接打开android项目，方便后面的文件修改。
+    
 
 ## 复制umeng插件到工程
 
@@ -114,3 +118,69 @@ cordova build android
 cordova run android
 ```
 
+
+---
+# 二、Bugly全量更新
+
+可参数官方配置文档  https://bugly.qq.com/docs/user-guide/instruction-manual-android-upgrade/?v=20180713114028
+
+## 更新build.gradle
+- 修改/platforms/android/app/build.gradle内容
+
+    ```
+        dependencies {
+            implementation fileTree(dir: 'libs', include: '*.jar')
+            // SUB-PROJECT DEPENDENCIES START
+            implementation(project(path: ":CordovaLib"))
+            // SUB-PROJECT DEPENDENCIES END
+            //添加友盟统计
+            implementation files('src/main/libs/umeng-analytics-v6.0.4.jar')
+            //添加bugly热更新
+            compile 'com.android.support:appcompat-v7:24.2.1'
+            compile 'com.tencent.bugly:crashreport_upgrade:1.3.5'
+        }
+    ```
+
+## 修改AndroidManifest.xml
+- 权限和umeng相同，不用添加
+- 在application层添加activity
+    ```
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientationscreenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+    ```
+
+- 在application层添加provider
+    ```
+        <provider android:authorities="这里写包名.fileProvider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
+                <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths" />
+        </provider>
+    ```   
+
+## 创建provider_paths.xml
+- 在res目录新建xml文件夹，创建provider_paths.xml文件如下：
+    ```
+        <?xml version="1.0" encoding="utf-8"?>
+        <paths xmlns:android="http://schemas.android.com/apk/res/android">
+            <!-- /storage/emulated/0/Download/${applicationId}/.beta/apk-->
+            <external-path name="beta_external_path" path="Download/"/>
+            <!--/storage/emulated/0/Android/data/${applicationId}/files/apk/-->
+            <external-path name="beta_external_files_path" path="Android/data/"/>
+        </paths>
+    ```
+
+
+## 修改MainActivity.java
+- 在onCreate()方法里初始化Bugly
+    ```
+        Bugly.init(this, "Bugly申请的appID", true);
+    ```
+
+## 编译运行
+
+```
+cordova build android
+    
+cordova run android
+```    

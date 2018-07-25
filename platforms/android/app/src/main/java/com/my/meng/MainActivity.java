@@ -21,6 +21,7 @@ package com.my.meng;
 
 import android.os.Bundle;
 
+import com.tencent.bugly.Bugly;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.analytics.MobclickAgent.EScenarioType;
 
@@ -47,6 +48,8 @@ public class MainActivity extends CordovaActivity
 //        Toast.makeText(this, "markToast", Toast.LENGTH_LONG).show();
 //        Intent intent = new Intent(this, SecondActivity.class);
 //        startActivity(intent);
+
+        Bugly.init(this, "dc2e9f5514", true);
     }
 
     /**
