@@ -1,5 +1,11 @@
 # Cordova集成Umeng统计 + Bugly全量更新（android）  
 &nbsp;
+
+&nbsp;
+[TOC]
+
+&nbsp;
+
 # 一、Umeng统计
 
 ## 准备工作
