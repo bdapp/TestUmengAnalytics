@@ -24,7 +24,7 @@
     cordova platforms add android
     ```
     > 这里可以用android studio直接打开android项目，方便后面的文件修改。
-    
+
 
 ## 复制umeng插件到工程
 
@@ -32,7 +32,10 @@
 
 - 修改umeng_plugin/plugin.xml里的内容
     ```
-    <!-- appkey -->
+    <!-- 第一处修改target-dir -->
+    <source-file src="src/android/umeng-analytics-v6.0.4.jar" target-dir="app/src/main/libs" />
+
+    <!-- 第二处修改umeng配置 -->
     <meta-data android:name="UMENG_APPKEY" android:value="替换成申请的appkey" />
     <meta-data android:name="UMENG_CHANNEL" android:value="自定义渠道名"/>
     ```
@@ -58,7 +61,7 @@
     };
     ```
 
-## 集成
+## 集成到Android
 
 - 集成umeng插件
     ```
